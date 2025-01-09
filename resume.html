@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Ayush Prabhu - Personal Website</title>
+    <style>
+      :root {
+        /* Light theme */
+        --light-bg: #ffffff;
+        --light-text: #213547;
+        --light-accent: #646cff;
+        --light-secondary: #f9f9f9;
+        --light-border: #e5e7eb;
+
+        /* Dark theme */
+        --dark-bg: #242424;
+        --dark-text: rgba(255, 255, 255, 0.87);
+        --dark-accent: #747bff;
+        --dark-secondary: #1a1a1a;
+        --dark-border: #374151;
+
+        /* Solarized Light */
+        --solarized-light-bg: #fdf6e3;
+        --solarized-light-text: #657b83;
+        --solarized-light-accent: #268bd2;
+        --solarized-light-secondary: #eee8d5;
+        --solarized-light-border: #93a1a1;
+
+        /* Solarized Dark */
+        --solarized-dark-bg: #002b36;
+        --solarized-dark-text: #839496;
+        --solarized-dark-accent: #268bd2;
+        --solarized-dark-secondary: #073642;
+        --solarized-dark-border: #586e75;
+
+        /* Default theme (light) */
+        --bg: var(--light-bg);
+        --text: var(--light-text);
+        --accent: var(--light-accent);
+        --secondary: var(--light-secondary);
+        --border: var(--light-border);
+      }
+
+      [data-theme="dark"] {
+        --bg: var(--dark-bg);
+        --text: var(--dark-text);
+        --accent: var(--dark-accent);
+        --secondary: var(--dark-secondary);
+        --border: var(--dark-border);
+      }
+
+      [data-theme="solarized-light"] {
+        --bg: var(--solarized-light-bg);
+        --text: var(--solarized-light-text);
+        --accent: var(--solarized-light-accent);
+        --secondary: var(--solarized-light-secondary);
+        --border: var(--solarized-light-border);
+      }
+
+      [data-theme="solarized-dark"] {
+        --bg: var(--solarized-dark-bg);
+        --text: var(--solarized-dark-text);
+        --accent: var(--solarized-dark-accent);
+        --secondary: var(--solarized-dark-secondary);
+        --border: var(--solarized-dark-border);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      body {
+        font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+        background-color: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 1rem;
+        background-color: var(--secondary);
+        border-bottom: 1px solid var(--border);
+        z-index: 1000;
+      }
+
+      .nav-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 500;
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: var(--accent);
+        transition: width 0.3s;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .theme-switcher {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .theme-btn {
+        padding: 0.5rem;
+        border: 1px solid var(--border);
+        background-color: var(--secondary);
+        color: var(--text);
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      .theme-btn:hover {
+        background-color: var(--accent);
+        color: var(--bg);
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .moving-shape {
+        position: absolute;
+        border-radius: 50%;
+        background-color: var(--accent);
+        opacity: 0.1;
+        animation: float 20s infinite linear;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        100% {
+          transform: translate(100px, 100px) rotate(360deg);
+        }
+      }
+
+      .section {
+        min-height: 100vh;
+        padding: 6rem 2rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s, transform 0.6s;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .container {
+            width: 45%;
+            height: 400px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            display: inline-block;
+        }
+
+      .frame {
+        width:100%;
+        height: 100%;
+        border:none;
+      }
+
+      .resume-container {
+            width: 90%;
+            height: 90vh;
+            margin: 10px;
+            border: 1px solid #ccc;
+
+            display: inline-block;
+        }
+
+      .resume {
+        width:100%;
+        height: 100%;
+        
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      const nav = `
+        <nav class="navbar">
+          <div class="nav-content">
+            <div class="nav-links">
+              <a href="./index.html">Home</a>
+              <a href="./projects.html">Projects</a>
+              <a href="./blog.html">Blog</a>
+              <a href="#resume">Resume</a>
+              <a href="#contact">Contact</a>
+            </div>
+            <div class="theme-switcher">
+              <button class="theme-btn" data-theme="light">Light</button>
+              <button class="theme-btn" data-theme="dark">Dark</button>
+              <button class="theme-btn" data-theme="solarized-light">Solarized Light</button>
+              <button class="theme-btn" data-theme="solarized-dark">Solarized Dark</button>
+            </div>
+          </div>
+        </nav>
+      `;
+
+      const content = `
+        <section id="resume" class="section">
+          ${createShapes()}
+          <div class="fade-in">
+            <h2>Resume</h2>
+            <p>My professional experience</p>
+            <div class="resume-container">
+              <iframe src="./assets/resume.pdf" class="resume"></iframe>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" class="section">
+          <div class="fade-in">
+            <h2>Contact</h2>
+            <p>Get in touch</p>
+            <div style="display: flex; flex-direction: row; align-items: center; gap: 1rem;">
+              <a href="https://medium.com/@ayushprabhu" class="theme-btn" style="display: flex; align-items: center; justify-content: center;">
+          <i class="fa fa-medium" style="margin-right: 0.5rem;"></i>
+          <span>Medium</span>
+              </a>
+              <a href="https://www.linkedin.com/in/Ayush-Prabhu" class="theme-btn" style="display: flex; align-items: center; justify-content: center;">
+          <i class="fa fa-linkedin" style="margin-right: 0.5rem;"></i>
+          <span>LinkedIn</span>
+              </a>
+              <a href="mailto:ayushprabhu20@gmail.com" class="theme-btn" style="display: flex; align-items: center; justify-content: center;">
+          <i class="fa fa-envelope" style="margin-right: 0.5rem;"></i>
+          <span>Email</span>
+              </a>
+            </div>
+          </div>
+        </section>
+      `;
+
+      // Create floating shapes
+      function createShapes() {
+        let shapes = '';
+        for (let i = 0; i < 5; i++) {
+          const size = Math.random() * 200 + 100;
+          const left = Math.random() * 100;
+          const top = Math.random() * 100;
+          const animationDuration = Math.random() * 20 + 10;
+          shapes += `
+            <div class="moving-shape" style="
+              width: ${size}px;
+              height: ${size}px;
+              left: ${left}%;
+              top: ${top}%;
+              animation-duration: ${animationDuration}s;
+              animation-delay: ${i * 2}s;
+            "></div>
+          `;
+        }
+        return shapes;
+      }
+
+      // Initialize the app
+      document.querySelector('#app').innerHTML = nav + content;
+
+      // Theme switching
+      const themeBtns = document.querySelectorAll('.theme-btn');
+      themeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.documentElement.setAttribute('data-theme', btn.dataset.theme);
+        });
+      });
+
+      // Scroll animations
+      const observerOptions = {
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.fade-in').forEach(element => {
+        observer.observe(element);
+      });
+
+      // Smooth scroll for navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
